@@ -1,4 +1,4 @@
-package com.example.planto_app
+package com.example.planto_app.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
