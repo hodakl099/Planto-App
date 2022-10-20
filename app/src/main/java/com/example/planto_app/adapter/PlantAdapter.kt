@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.planto_app.Plant
-import com.example.planto_app.databinding.FragmentPlantBinding
+import com.example.planto_app.data.entity.Plant
 import com.example.planto_app.databinding.ItemPlantBinding
 
-class PlantAdapter() : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
+class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
 
     inner class PlantViewHolder(val binding: ItemPlantBinding) : RecyclerView.ViewHolder(binding.root)
 
