@@ -1,4 +1,4 @@
-package com.example.planto_app
+package com.example.planto_app.data.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
