@@ -10,6 +10,9 @@ import com.example.planto_app.adapter.PlantAdapter
 import com.example.planto_app.databinding.FragmentPlantBinding
 
 
+/**
+ * [PlantFragment] displays a list of Plants.
+ */
 class PlantFragment : Fragment() {
 
 

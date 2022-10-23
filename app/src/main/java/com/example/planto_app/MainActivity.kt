@@ -9,12 +9,17 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.navigation.ui.setupWithNavController
 import com.example.planto_app.databinding.ActivityMainBinding
+import com.example.planto_app.ui.PlantFragment
+import com.example.planto_app.ui.PlantFragmentDirections
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bottomNavigationView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +29,13 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        bottomNavigationView = binding.bottomNavView
+
+        val navController = this.findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        bottomNavigationView.setupWithNavController(navController)
 
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -38,6 +47,28 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    private fun setUpBottomNavigation() {
+
+        val actionTODetailFragment = PlantFragmentDirections.actionPlantsFragmentToPlantDetailFragment()
+
+        val actionToPlantsFragment = PlantFragmentDirections.actionPlantsFragmentToPlantDetailFragment()
+
+        binding.bottomNavView.setOnItemReselectedListener { item ->
+
+
+            when(item.itemId){
+                R.id.plantsFragment -> {
+                    findNavController(R.id.nav_host_fragment_content_main).navigate(actionTODetailFragment)
+                }
+                R.id.plantDetailFragment ->
+                    findNavController(R.id.nav_host_fragment_content_main).navigate(actionToPlantsFragment)
+
+            }
+
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -55,4 +86,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+
 }
