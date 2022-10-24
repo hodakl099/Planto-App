@@ -1,7 +1,6 @@
 package com.example.planto_app
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -72,27 +71,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun setUpBottomNavigation() {
-
-        val actionTODetailFragment = PlantFragmentDirections.actionPlantsFragmentToPlantDetailFragment()
-
-        val actionToPlantsFragment = PlantFragmentDirections.actionPlantsFragmentToPlantDetailFragment()
-
-        binding.bottomNavView.setOnItemReselectedListener { item ->
-
-
-            when(item.itemId){
-                R.id.plantsFragment -> {
-                    findNavController(R.id.nav_host_fragment_content_main).navigate(actionTODetailFragment)
-                }
-                R.id.plantDetailFragment ->
-                    findNavController(R.id.nav_host_fragment_content_main).navigate(actionToPlantsFragment)
-
-            }
-
-        }
-
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
