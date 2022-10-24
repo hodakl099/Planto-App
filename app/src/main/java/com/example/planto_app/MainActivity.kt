@@ -9,6 +9,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.ui.setupWithNavController
 import com.example.planto_app.databinding.ActivityMainBinding
 import com.example.planto_app.ui.PlantFragment
@@ -37,10 +39,31 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        // here to show FAB only in the plants fragment.
+            // and to hide bottom navigation view in add plant fragment.
+        navController.addOnDestinationChangedListener{_, destination , _ ->
+
+            when ((destination as FragmentNavigator.Destination).className) {
+                PlantFragment::class.qualifiedName -> {
+                    binding.fab.visibility = View.VISIBLE
+                    binding.bottomNavView.visibility = View.VISIBLE
+                }
+                else -> {
+                    binding.fab.visibility = View.GONE
+                    binding.bottomNavView.visibility = View.GONE
+                }
+
+            }
         }
+
+         val directionsToAddPlantFragment =
+            PlantFragmentDirections.actionPlantsFragmentToAddPlantFragment()
+
+        binding.fab.setOnClickListener { view ->
+           findNavController(R.id.nav_host_fragment_content_main).navigate(directionsToAddPlantFragment)
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

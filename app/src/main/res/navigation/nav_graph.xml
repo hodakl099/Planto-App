@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_plantsFragment_to_plantDetailFragment"
             app:destination="@id/plantDetailFragment" />
+        <action
+            android:id="@+id/action_plantsFragment_to_addPlantFragment"
+            app:destination="@id/addPlantFragment" />
     </fragment>
     <fragment
         android:id="@+id/plantDetailFragment"
@@ -23,5 +26,10 @@
             android:id="@+id/action_plantDetailFragment_to_plantsFragment"
             app:destination="@id/plantsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addPlantFragment"
+        android:name="com.example.planto_app.ui.AddPlantFragment"
+        android:label="Add Plant"
+        tools:layout="@layout/fragment_add_plant" />
 
 </navigation>
