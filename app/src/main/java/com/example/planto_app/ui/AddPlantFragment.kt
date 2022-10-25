@@ -1,5 +1,7 @@
 package com.example.planto_app.ui
 
+import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -8,21 +10,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.planto_app.Manifest
-import com.example.planto_app.R
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.example.planto_app.MainActivity
 import com.example.planto_app.databinding.FragmentAddPlantBinding
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.DexterBuilder.MultiPermissionListener
-import com.karumi.dexter.MultiplePermissionsReport
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 
 
 class AddPlantFragment : Fragment() {
 
     private var _binding : FragmentAddPlantBinding? = null
-    private val CAMERA_REQUIEST_CODE = 1
 
 
     private val binding get() = _binding!!
@@ -33,46 +29,27 @@ class AddPlantFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentAddPlantBinding.inflate(layoutInflater,container,false)
 
-        binding.plantImg.setOnClickListener {
-            permissionCameraCheck()
+
+        binding.plantImg.setOnClickListener{
+            pickImageFromGallery()
         }
 
 
         return binding.root
     }
 
-    private fun permissionCameraCheck() {
-        Dexter.withContext(context)
-            .withPermissions(
-                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                android.Manifest.permission.CAMERA
-            ).withListener(
-                object : MultiplePermissionsListener {
-                    override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-
-                        report?.let {
-                            if (report.areAllPermissionsGranted()) {
-                                openCamera()
-                            }
-                        }
-
-                    }
-
-                    override fun onPermissionRationaleShouldBeShown(
-                        p0: MutableList<PermissionRequest>?,
-                        p1: PermissionToken?
-                    ) {
-                        TODO("Not yet implemented")
-                    }
-
-                }
-            )
-
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        resultLauncher.launch(intent)
     }
 
-    private fun openCamera() {
-      val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent,CAMERA_REQUIEST_CODE)
+
+    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            binding.plantImg.setImageURI(data?.data)
+        }
     }
 
 
