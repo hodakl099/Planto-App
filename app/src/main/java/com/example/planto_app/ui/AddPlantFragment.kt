@@ -1,6 +1,5 @@
 package com.example.planto_app.ui
 
-import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -46,7 +45,7 @@ class AddPlantFragment : Fragment() {
 
 
         binding.plantImg.setOnClickListener {
-            cameraCheckPermission()
+            galleryCheckPermission()
         }
 
 //        binding.plantImg.setOnClickListener{
