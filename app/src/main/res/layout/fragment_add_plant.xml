@@ -22,18 +22,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:orientation="vertical">
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView"
-                    android:layout_width="match_parent"
-                    android:layout_height="155dp"
-                    android:layout_marginTop="48dp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="250dp"
-                    android:layout_gravity="center">
+
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="30dp">
 
 
                         <ImageView
@@ -41,9 +35,9 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="12dp"
+                            android:layout_marginBottom="16dp"
                             android:padding="10dp"
-                            android:src="@drawable/ic_launcher_background"
+                            android:src="@drawable/photo_camera"
                             app:layout_constraintBottom_toBottomOf="@+id/cardView3"
                             app:layout_constraintEnd_toStartOf="@+id/cardView3"
                             app:tint="@color/black" />
@@ -52,10 +46,10 @@
                             android:id="@+id/iv_gallery_icon"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="12dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="10dp"
                             android:padding="10dp"
-                            android:src="@drawable/ic_launcher_background"
+                            android:src="@drawable/add"
                             app:layout_constraintBottom_toBottomOf="@+id/cardView3"
                             app:layout_constraintStart_toEndOf="@+id/cardView3"
                             app:tint="@color/black" />
@@ -76,14 +70,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/ic_launcher_background" />
+                                android:src="@mipmap/ic_launcher_round" />
 
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-                </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/plant_name_input"

@@ -15,6 +15,7 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.provider.Settings
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.karumi.dexter.Dexter
@@ -44,25 +45,28 @@ class AddPlantFragment : Fragment() {
 
 
 
-        binding.plantImg.setOnClickListener {
+        binding.ivCameraIcon.setOnClickListener {
+             cameraCheckPermission()
+        }
+        binding.ivGalleryIcon.setOnClickListener{
             galleryCheckPermission()
         }
 
-//        binding.plantImg.setOnClickListener{
-//            val pictureDialog = AlertDialog.Builder(requireContext())
-//            pictureDialog.setTitle("Select Action")
-//            val pictureDialogItem = arrayOf("Select photo from Gallery",
-//                "Capture photo from Camera")
-//            pictureDialog.setItems(pictureDialogItem) { dialog, which ->
-//
-//                when (which) {
-//                    0 -> gallery()
-//                    1 -> camera()
-//                }
-//            }
-//
-//            pictureDialog.show()
-//        }
+        binding.plantImg.setOnClickListener{
+            val pictureDialog = AlertDialog.Builder(requireContext())
+            pictureDialog.setTitle("Select Action")
+            val pictureDialogItem = arrayOf("Select photo from Gallery",
+                "Capture photo from Camera")
+            pictureDialog.setItems(pictureDialogItem) { dialog, which ->
+
+                when (which) {
+                    0 -> gallery()
+                    1 -> camera()
+                }
+            }
+
+            pictureDialog.show()
+        }
 
 
         return binding.root
@@ -173,7 +177,7 @@ class AddPlantFragment : Fragment() {
     private fun showRotationalDialogForPermission() {
         AlertDialog.Builder(requireContext())
             .setMessage("It looks like you have turned off permissions"
-                    + "required for this feature. It can be enable under App settings")
+                    + " required for this feature. It can be enable under App settings")
 
             .setPositiveButton("Go TO SETTINGS") { _, _ ->
 
