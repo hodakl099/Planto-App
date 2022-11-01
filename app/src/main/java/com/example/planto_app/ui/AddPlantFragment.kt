@@ -14,10 +14,12 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.provider.MediaStore
 import android.provider.Settings
+import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import coil.transform.CircleCropTransformation
+import com.example.planto_app.Constants
+import com.example.planto_app.R
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -57,7 +59,7 @@ class AddPlantFragment : Fragment() {
             pictureDialog.setTitle("Select Action")
             val pictureDialogItem = arrayOf("Select photo from Gallery",
                 "Capture photo from Camera")
-            pictureDialog.setItems(pictureDialogItem) { dialog, which ->
+            pictureDialog.setItems(pictureDialogItem) { _, which ->
 
                 when (which) {
                     0 -> gallery()
@@ -66,6 +68,26 @@ class AddPlantFragment : Fragment() {
             }
 
             pictureDialog.show()
+        }
+
+        binding.etPlantLocation.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                R.layout.drop_down_item,
+                Constants(requireContext()).PLANT_LOCATION
+            )
+        )
+
+        binding.etPlantType.setAdapter(
+            ArrayAdapter(
+                requireContext(),
+                R.layout.drop_down_item,
+                Constants(requireContext()).PLANT_TYPE
+            )
+        )
+
+        binding.etAdoptionDate.setOnClickListener {
+
         }
 
 
