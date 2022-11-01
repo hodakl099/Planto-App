@@ -21,10 +21,15 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.planto_app.Constants
 import com.example.planto_app.R
+import com.example.planto_app.data.entity.Plant
+import com.example.planto_app.viewmodel.PlantsViewModel
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -33,14 +38,19 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import dagger.hilt.android.AndroidEntryPoint
+
 import java.util.Calendar
 
-
+@AndroidEntryPoint
 class AddPlantFragment : Fragment() {
+
+    private val plantViewModel : PlantsViewModel by activityViewModels()
 
     private var _binding : FragmentAddPlantBinding? = null
     private val CAMERA_REQUEST_CODE = 1
     private val GALLERY_REQUEST_CODE = 2
+
 
 
     private val binding get() = _binding!!
@@ -60,6 +70,7 @@ class AddPlantFragment : Fragment() {
         binding.ivGalleryIcon.setOnClickListener{
             galleryCheckPermission()
         }
+
 
         binding.plantImg.setOnClickListener{
             val pictureDialog = AlertDialog.Builder(requireContext())
@@ -116,11 +127,11 @@ class AddPlantFragment : Fragment() {
         binding.etAdoptionDate.setOnClickListener {
                 dpd.show()
         }
-
-
-
-        binding.etAdoptionDate.setOnClickListener {
-
+        binding.addPlant.setOnClickListener {
+            val directionsToPlantFragment =
+                AddPlantFragmentDirections.actionAddPlantFragmentToPlantsFragment()
+            addPlant()
+            findNavController().navigate(directionsToPlantFragment)
         }
 
 
@@ -229,6 +240,7 @@ class AddPlantFragment : Fragment() {
     }
 
 
+
     private fun showRotationalDialogForPermission() {
         AlertDialog.Builder(requireContext())
             .setMessage("It looks like you have turned off permissions"
@@ -250,6 +262,22 @@ class AddPlantFragment : Fragment() {
             .setNegativeButton("CANCEL") { dialog, _ ->
                 dialog.dismiss()
             }.show()
+    }
+
+    private fun addPlant() {
+
+        val plant = Plant(
+            binding.plantImg.drawable.toBitmap(),
+            "Ace",
+            "Var",
+            2,
+            4,
+            binding.etAdoptionDate.text.toString(),
+            binding.etPlantLocation.text.toString(),
+            "Dummy note"
+        )
+
+         plantViewModel.addPlant(plant)
     }
 
 

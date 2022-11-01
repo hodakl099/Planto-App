@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,13 +10,18 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="30dp"
-            android:layout_margin="20dp">
+            android:layout_margin="20dp"
+            app:cardCornerRadius="30dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -79,8 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/name"
-                        android:maxLength="40"
-                        />
+                        android:maxLength="40" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -96,11 +100,11 @@
                         android:id="@+id/et_plant_type"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:hint="@string/type"
                         android:inputType="none"
                         android:padding="15dp"
                         android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:hint="@string/type"/>
+                        android:paddingEnd="8dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -110,18 +114,18 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="34dp"
-                    android:hint="@string/adoption"
                     android:clickable="true"
                     android:focusable="true"
+                    android:hint="@string/adoption"
                     app:endIconDrawable="@drawable/ic_baseline_photo_24"
-                    app:endIconMode="custom"
-                    >
+                    app:endIconMode="custom">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_adoption_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -160,11 +164,11 @@
                         android:id="@+id/et_plant_location"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:hint="@string/location"
+                        android:inputType="none"
                         android:padding="15dp"
                         android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:hint="@string/location"
-                        android:inputType="none" />
+                        android:paddingEnd="8dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -181,9 +185,9 @@
                         android:id="@+id/plant_note_edit_text"
                         android:layout_width="match_parent"
                         android:layout_height="58dp"
-                        android:padding="15dp"
                         android:hint="@string/note"
-                        android:maxLength="100"/>
+                        android:maxLength="100"
+                        android:padding="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -194,8 +198,16 @@
 
     </androidx.core.widget.NestedScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addPlant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:foregroundGravity="right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

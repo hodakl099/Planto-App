@@ -10,7 +10,7 @@ import com.example.planto_app.databinding.PlantItemLayoutBinding
 
 class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
 
-    inner class PlantViewHolder(val binding: PlantItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class PlantViewHolder( val binding: PlantItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
     // differ call back to calculate different between 2 lists and output it,
     // and converts the old list to the new list, and it can be used with recyclerview adapter.
@@ -34,6 +34,9 @@ class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
 
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
         val plantItem = differ.currentList[position]
+        holder.binding.apply {
+            testText.text = plantItem.plantType
+        }
     }
 
     override fun getItemCount(): Int {

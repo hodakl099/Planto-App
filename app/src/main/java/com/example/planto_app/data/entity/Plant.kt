@@ -1,5 +1,6 @@
 package com.example.planto_app.data.entity
 
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,8 +8,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "plants")
 data class Plant(
-    @PrimaryKey(autoGenerate = true)
-    var id : Int = 0,
+    @ColumnInfo(name = "plantImage")
+    val plantImage : Bitmap,
     @ColumnInfo(name = "plantName")
     val plantName : String,
     @ColumnInfo(name = "plantType")
@@ -21,6 +22,9 @@ data class Plant(
     val date : String,
     @ColumnInfo(name = "plantLocation")
     val plantLocation : String,
-    @ColumnInfo(name = "plantDescription")
-    val plantDescription : String
-    )
+    @ColumnInfo(name = "plantNote")
+    val plantNote : String
+    ) {
+    @PrimaryKey(autoGenerate = true)
+    var id : Int = 0
+}

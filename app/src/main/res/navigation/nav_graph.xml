@@ -30,6 +30,10 @@
         android:id="@+id/addPlantFragment"
         android:name="com.example.planto_app.ui.AddPlantFragment"
         android:label="Add Plant"
-        tools:layout="@layout/fragment_add_plant" />
+        tools:layout="@layout/fragment_add_plant" >
+        <action
+            android:id="@+id/action_addPlantFragment_to_plantsFragment"
+            app:destination="@id/plantsFragment" />
+    </fragment>
 
 </navigation>

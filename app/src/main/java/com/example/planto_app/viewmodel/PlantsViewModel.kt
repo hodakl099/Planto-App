@@ -1,5 +1,6 @@
 package com.example.planto_app.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.planto_app.data.entity.Plant
@@ -14,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PlantsViewModel @Inject constructor(val repository: PlantRepository) : ViewModel() {
 
-    val getAllPlants : Flow<List<Plant>> = repository.getAllPlants()
+    val getAllPlants : LiveData<List<Plant>> = repository.getAllPlants()
 
     //add new Plant
     fun addPlant(plant: Plant) {

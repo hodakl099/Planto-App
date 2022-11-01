@@ -5,19 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planto_app.R
 import com.example.planto_app.adapter.PlantAdapter
 import com.example.planto_app.databinding.FragmentPlantBinding
+import com.example.planto_app.viewmodel.PlantsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
  * [PlantFragment] displays a list of Plants.
  */
+@AndroidEntryPoint
 class PlantFragment : Fragment() {
 
+
+    private val plantViewModel : PlantsViewModel by activityViewModels()
 
     //Recommended by google to set ViewBinding as null.
     private  var _binding : FragmentPlantBinding? = null
@@ -37,10 +47,19 @@ class PlantFragment : Fragment() {
 
         recyclerView = binding.rvPlants
 
+        plantViewModel.getAllPlants.observe(viewLifecycleOwner) { plants ->
+            adapter.differ.submitList(plants)
+        }
+        setUpRecyclerView()
 
 
         return binding.root
 
+    }
+    private fun setUpRecyclerView() = lifecycleScope.launchWhenCreated {
+        adapter = PlantAdapter()
+        binding.rvPlants.adapter = adapter
+        binding.rvPlants.layoutManager = GridLayoutManager(activity, 2)
     }
 
 

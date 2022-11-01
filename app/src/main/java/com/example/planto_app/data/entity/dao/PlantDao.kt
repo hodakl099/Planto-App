@@ -1,5 +1,6 @@
 package com.example.planto_app.data.entity.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -27,7 +28,7 @@ interface PlantDao {
 
     // get all plants in Plants table.
     @Query("SELECT * FROM plants")
-     fun getAllPlants() : Flow<List<Plant>>
+     fun getAllPlants() : LiveData<List<Plant>>
 
      //Delete all plants in Plants Table.
     @Query("Delete From plants")

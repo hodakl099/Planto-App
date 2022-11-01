@@ -20,7 +20,10 @@ import com.example.planto_app.ui.AddPlantFragment
 import com.example.planto_app.ui.PlantFragment
 import com.example.planto_app.ui.PlantFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -50,14 +53,8 @@ class MainActivity : AppCompatActivity() {
 
             when ((destination as FragmentNavigator.Destination).className) {
                 PlantFragment::class.qualifiedName -> {
-                    binding.savePlantFab.visibility = View.GONE
                     binding.addPlantFab.visibility = View.VISIBLE
                     binding.bottomNavView.visibility = View.VISIBLE
-                }
-                AddPlantFragment::class.qualifiedName -> {
-                    binding.savePlantFab.visibility = View.VISIBLE
-                    binding.addPlantFab.visibility = View.GONE
-                    binding.bottomNavView.visibility = View.GONE
                 }
                 else -> {
                     binding.addPlantFab.visibility = View.GONE
