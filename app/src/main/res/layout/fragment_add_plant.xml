@@ -24,56 +24,44 @@
                 android:orientation="vertical">
 
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="30dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="30dp">
 
 
-                        <ImageView
-                            android:id="@+id/iv_camera_icon"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="16dp"
-                            android:padding="10dp"
-                            android:src="@drawable/photo_camera"
-                            app:layout_constraintBottom_toBottomOf="@+id/cardView3"
-                            app:layout_constraintEnd_toStartOf="@+id/cardView3"
-                            app:tint="@color/black" />
+                    <ImageView
+                        android:id="@+id/iv_camera_icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="10dp"
+                        android:src="@drawable/photo_camera"
+                        app:layout_constraintBottom_toBottomOf="@+id/plant_img"
+                        app:layout_constraintEnd_toStartOf="@+id/plant_img"
+                        app:tint="@color/black" />
 
-                        <ImageView
-                            android:id="@+id/iv_gallery_icon"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginBottom="10dp"
-                            android:padding="10dp"
-                            android:src="@drawable/add"
-                            app:layout_constraintBottom_toBottomOf="@+id/cardView3"
-                            app:layout_constraintStart_toEndOf="@+id/cardView3"
-                            app:tint="@color/black" />
+                    <ImageView
+                        android:id="@+id/iv_gallery_icon"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:padding="10dp"
+                        android:src="@drawable/add"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/plant_img"
+                        app:tint="@color/black" />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView3"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:layout_gravity="center"
-                            app:cardCornerRadius="250dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                    <ImageView
+                        android:id="@+id/plant_img"
+                        android:layout_width="100dp"
+                        android:layout_height="103dp"
+                        android:src="@drawable/ic_baseline_photo_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                            <ImageView
-                                android:id="@+id/plant_img"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:src="@mipmap/ic_launcher_round" />
 
-                        </androidx.cardview.widget.CardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -115,25 +103,25 @@
                         android:hint="@string/type"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/adoption_date"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="34dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginEnd="34dp">
-
-                    <AutoCompleteTextView
+                    android:layout_marginEnd="34dp"
+                    android:hint="@string/adoption"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:endIconDrawable="@drawable/ic_baseline_photo_24"
+                    app:endIconMode="custom"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_adoption_date"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="15dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:hint="@string/adoption"
-                        android:inputType="none" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -145,7 +133,6 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="34dp"
-
                     android:max="10"
                     android:progress="3" />
 

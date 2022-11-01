@@ -12,6 +12,8 @@ class Constants(context: Context) {
         context.getString(R.string.bedroom)
     )
 
+
+
     val PLANT_TYPE = arrayOf(
         context.getString(R.string.climbers),
         context.getString(R.string.creepers),

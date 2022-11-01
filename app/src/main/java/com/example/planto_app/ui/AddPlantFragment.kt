@@ -1,5 +1,6 @@
 package com.example.planto_app.ui
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -9,13 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.planto_app.databinding.FragmentAddPlantBinding
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.planto_app.Constants
@@ -28,6 +33,7 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
+import java.util.Calendar
 
 
 class AddPlantFragment : Fragment() {
@@ -38,6 +44,7 @@ class AddPlantFragment : Fragment() {
 
 
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +55,7 @@ class AddPlantFragment : Fragment() {
 
 
         binding.ivCameraIcon.setOnClickListener {
-             cameraCheckPermission()
+            cameraCheckPermission()
         }
         binding.ivGalleryIcon.setOnClickListener{
             galleryCheckPermission()
@@ -70,7 +77,8 @@ class AddPlantFragment : Fragment() {
             pictureDialog.show()
         }
 
-        binding.etPlantLocation.setAdapter(
+        binding.etPlantLocation
+            .setAdapter(
             ArrayAdapter(
                 requireContext(),
                 R.layout.drop_down_item,
@@ -78,13 +86,38 @@ class AddPlantFragment : Fragment() {
             )
         )
 
-        binding.etPlantType.setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                R.layout.drop_down_item,
-                Constants(requireContext()).PLANT_TYPE
+
+        binding.etPlantType
+            .setAdapter(
+                ArrayAdapter(
+                    requireContext(),
+                    R.layout.drop_down_item,
+                    Constants(requireContext()).PLANT_TYPE
+                )
             )
-        )
+
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
+            binding.etAdoptionDate.apply {
+                setText("$mDay/${mMonth + 1}/$mYear")
+                    isClickable = true
+                    isFocusable = true
+                    isFocusableInTouchMode
+
+            }
+        }, year, month, day)
+        dpd.show()
+
+
+        binding.etAdoptionDate.setOnClickListener {
+                dpd.show()
+        }
+
+
 
         binding.etAdoptionDate.setOnClickListener {
 
