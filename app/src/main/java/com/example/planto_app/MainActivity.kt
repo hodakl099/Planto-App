@@ -16,6 +16,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.planto_app.databinding.ActivityMainBinding
+import com.example.planto_app.ui.AddPlantFragment
 import com.example.planto_app.ui.PlantFragment
 import com.example.planto_app.ui.PlantFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -49,11 +50,17 @@ class MainActivity : AppCompatActivity() {
 
             when ((destination as FragmentNavigator.Destination).className) {
                 PlantFragment::class.qualifiedName -> {
-                    binding.fab.visibility = View.VISIBLE
+                    binding.savePlantFab.visibility = View.GONE
+                    binding.addPlantFab.visibility = View.VISIBLE
                     binding.bottomNavView.visibility = View.VISIBLE
                 }
+                AddPlantFragment::class.qualifiedName -> {
+                    binding.savePlantFab.visibility = View.VISIBLE
+                    binding.addPlantFab.visibility = View.GONE
+                    binding.bottomNavView.visibility = View.GONE
+                }
                 else -> {
-                    binding.fab.visibility = View.GONE
+                    binding.addPlantFab.visibility = View.GONE
                     binding.bottomNavView.visibility = View.GONE
                 }
 
@@ -63,7 +70,7 @@ class MainActivity : AppCompatActivity() {
          val directionsToAddPlantFragment =
             PlantFragmentDirections.actionPlantsFragmentToAddPlantFragment()
 
-        binding.fab.setOnClickListener { view ->
+        binding.addPlantFab.setOnClickListener { view ->
            findNavController(R.id.nav_host_fragment_content_main).navigate(directionsToAddPlantFragment)
         }
 
