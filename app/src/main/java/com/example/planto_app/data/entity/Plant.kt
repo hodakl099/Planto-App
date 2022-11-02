@@ -14,12 +14,12 @@ data class Plant(
     val plantName : String,
     @ColumnInfo(name = "plantType")
     val plantType : String,
+    @ColumnInfo(name = "plantAdoptionDate")
+    val AdoptionDate : String,
     @ColumnInfo(name = "dailyWatering")
     val dailyWatering : Int,
     @ColumnInfo(name = "outdoorLight")
     val outdoorLight : Int,
-    @ColumnInfo(name = "date")
-    val date : String,
     @ColumnInfo(name = "plantLocation")
     val plantLocation : String,
     @ColumnInfo(name = "plantNote")

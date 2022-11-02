@@ -1,6 +1,5 @@
 package com.example.planto_app.ui
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -14,13 +13,10 @@ import android.app.DatePickerDialog
 import android.content.ActivityNotFoundException
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +26,7 @@ import com.example.planto_app.Constants
 import com.example.planto_app.R
 import com.example.planto_app.data.entity.Plant
 import com.example.planto_app.viewmodel.PlantsViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -96,6 +93,8 @@ class AddPlantFragment : Fragment() {
                 Constants(requireContext()).PLANT_LOCATION
             )
         )
+        // set default text
+        binding.etPlantLocation.setText(Constants(requireContext()).PLANT_LOCATION[0], false)
 
 
         binding.etPlantType
@@ -106,6 +105,8 @@ class AddPlantFragment : Fragment() {
                     Constants(requireContext()).PLANT_TYPE
                 )
             )
+        // set Default text
+        binding.etPlantType.setText(Constants(requireContext()).PLANT_TYPE[0], false)
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -128,10 +129,39 @@ class AddPlantFragment : Fragment() {
                 dpd.show()
         }
         binding.addPlant.setOnClickListener {
-            val directionsToPlantFragment =
-                AddPlantFragmentDirections.actionAddPlantFragmentToPlantsFragment()
-            addPlant()
-            findNavController().navigate(directionsToPlantFragment)
+
+            binding.apply {
+                val (plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note) = getPlantContent()
+
+                // validate if plant content is empty or not
+                when {
+                    plantName.isEmpty() -> {
+                        this.plantNameInput.error = "Plant name must note be empty"
+                    }
+                    plantType.isEmpty() -> {
+                        this.etPlantType.error = "Plant type must note be empty"
+                    }
+                    adoptionDate.isEmpty() -> {
+                        this.etAdoptionDate.error = "Plant adoption date must note be empty"
+                    }
+                    plantLocation.isEmpty() -> {
+                        this.plantNameInput.error = "Plant location must note be empty"
+                    }
+                    else -> {
+                        plantViewModel.addPlant(getPlantContent()).run {
+                            Toast.makeText(activity,"Plant is successfully added",Toast.LENGTH_SHORT).show()
+
+                            val directionsToPlantFragment =
+                                AddPlantFragmentDirections.actionAddPlantFragmentToPlantsFragment()
+                            findNavController().navigate(directionsToPlantFragment)
+                        }
+                    }
+                }
+            }
+
+
+
+
         }
 
 
@@ -266,21 +296,36 @@ class AddPlantFragment : Fragment() {
 
     private fun addPlant() {
 
-        val plant = Plant(
-            binding.plantImg.drawable.toBitmap(),
-            "Ace",
-            "Var",
-            2,
-            4,
-            binding.etAdoptionDate.text.toString(),
-            binding.etPlantLocation.text.toString(),
-            "Dummy note"
-        )
 
-         plantViewModel.addPlant(plant)
+
+//        val plant = Plant(
+//            binding.plantImg.drawable.toBitmap(),
+//            "Ace",
+//            "Var",
+//            2,
+//            4,
+//            binding.etAdoptionDate.text.toString(),
+//            binding.etPlantLocation.text.toString(),
+//            "Dummy note"
+//        )
+
+//         plantViewModel.addPlant(plant)
     }
 
 
+    private fun getPlantContent() : Plant {
+        val plantImage =  binding.plantImg.drawable.toBitmap()
+        val plantName = binding.plantName.text.toString()
+        val plantType = binding.etPlantType.text.toString()
+        val adoptionDate = binding.etAdoptionDate.text.toString()
+        val watering = binding.seekBarWatering.progress
+        val outdoorLight = binding.seekBarLight.progress
+        val plantLocation = binding.etPlantLocation.text.toString()
+        val note = binding.plantNoteEditText.text.toString()
+
+        return Plant(plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note)
+
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
