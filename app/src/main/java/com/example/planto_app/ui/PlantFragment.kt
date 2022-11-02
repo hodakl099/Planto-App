@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import android.widget.Space
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.planto_app.R
 import com.example.planto_app.adapter.PlantAdapter
 import com.example.planto_app.databinding.FragmentPlantBinding
@@ -59,7 +61,7 @@ class PlantFragment : Fragment() {
     private fun setUpRecyclerView() = lifecycleScope.launchWhenCreated {
         adapter = PlantAdapter()
         binding.rvPlants.adapter = adapter
-        binding.rvPlants.layoutManager = GridLayoutManager(activity, 2)
+        binding.rvPlants.layoutManager = GridLayoutManager(activity,2)
     }
 
 

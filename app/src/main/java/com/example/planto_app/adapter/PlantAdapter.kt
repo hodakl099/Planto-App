@@ -35,7 +35,9 @@ class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
     override fun onBindViewHolder(holder: PlantViewHolder, position: Int) {
         val plantItem = differ.currentList[position]
         holder.binding.apply {
-            testText.text = plantItem.plantType
+            plantImg.setImageBitmap(plantItem.plantImage)
+            tvPlantType.text = plantItem.plantType
+            tvPlantName.text = plantItem.plantName
         }
     }
 
