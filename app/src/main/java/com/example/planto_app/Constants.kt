@@ -4,6 +4,10 @@ import android.content.Context
 
 class Constants(context: Context) {
 
+    companion object{
+        val KEY = "currentPlant"
+    }
+
     val PLANT_LOCATION = arrayOf(
         context.getString(R.string.balcony),
         context.getString(R.string.hallway),

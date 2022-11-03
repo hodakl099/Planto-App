@@ -26,7 +26,6 @@ import com.example.planto_app.Constants
 import com.example.planto_app.R
 import com.example.planto_app.data.entity.Plant
 import com.example.planto_app.viewmodel.PlantsViewModel
-import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -131,7 +130,7 @@ class AddPlantFragment : Fragment() {
         binding.addPlant.setOnClickListener {
 
             binding.apply {
-                val (plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note) = getPlantContent()
+                val (plantId,plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note) = getPlantContent()
 
                 // validate if plant content is empty or not
                 when {
@@ -158,9 +157,6 @@ class AddPlantFragment : Fragment() {
                     }
                 }
             }
-
-
-
 
         }
 
@@ -214,7 +210,6 @@ class AddPlantFragment : Fragment() {
                             if (report.areAllPermissionsGranted()) {
                                 camera()
                             }
-
                         }
                     }
 
@@ -294,26 +289,10 @@ class AddPlantFragment : Fragment() {
             }.show()
     }
 
-    private fun addPlant() {
-
-
-
-//        val plant = Plant(
-//            binding.plantImg.drawable.toBitmap(),
-//            "Ace",
-//            "Var",
-//            2,
-//            4,
-//            binding.etAdoptionDate.text.toString(),
-//            binding.etPlantLocation.text.toString(),
-//            "Dummy note"
-//        )
-
-//         plantViewModel.addPlant(plant)
-    }
 
 
     private fun getPlantContent() : Plant {
+        val plantId = 0
         val plantImage =  binding.plantImg.drawable.toBitmap()
         val plantName = binding.plantName.text.toString()
         val plantType = binding.etPlantType.text.toString()
@@ -323,7 +302,7 @@ class AddPlantFragment : Fragment() {
         val plantLocation = binding.etPlantLocation.text.toString()
         val note = binding.plantNoteEditText.text.toString()
 
-        return Plant(plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note)
+        return Plant(plantId ,plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note)
 
     }
     override fun onDestroy() {

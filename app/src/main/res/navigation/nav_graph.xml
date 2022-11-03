@@ -16,6 +16,10 @@
         <action
             android:id="@+id/action_plantsFragment_to_addPlantFragment"
             app:destination="@id/addPlantFragment" />
+<!--        <argument-->
+<!--            android:name="currentPlant"-->
+<!--            app:argType="com.example.planto_app.data.entity.Plant"-->
+<!--            app:nullable="true" />-->
     </fragment>
     <fragment
         android:id="@+id/plantDetailFragment"
@@ -25,6 +29,9 @@
         <action
             android:id="@+id/action_plantDetailFragment_to_plantsFragment"
             app:destination="@id/plantsFragment" />
+        <argument
+            android:name="currentPlant"
+            app:argType="com.example.planto_app.data.entity.Plant" />
     </fragment>
     <fragment
         android:id="@+id/addPlantFragment"

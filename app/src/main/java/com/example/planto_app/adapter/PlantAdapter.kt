@@ -39,9 +39,23 @@ class PlantAdapter : RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
             tvPlantType.text = plantItem.plantType
             tvPlantName.text = plantItem.plantName
         }
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.let {
+                it(plantItem)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
+    private var onItemClickListener : ( (Plant) -> Unit)? = null
+
+    fun setonItemClickListener(listener: (Plant) -> Unit) {
+        onItemClickListener = listener
+    }
+
 }

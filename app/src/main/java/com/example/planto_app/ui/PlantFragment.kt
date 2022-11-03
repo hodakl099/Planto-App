@@ -5,16 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.Space
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.planto_app.Constants
 import com.example.planto_app.R
 import com.example.planto_app.adapter.PlantAdapter
 import com.example.planto_app.databinding.FragmentPlantBinding
@@ -49,9 +46,20 @@ class PlantFragment : Fragment() {
 
         recyclerView = binding.rvPlants
 
-        plantViewModel.getAllPlants.observe(viewLifecycleOwner) { plants ->
-            adapter.differ.submitList(plants)
+        lifecycleScope.launchWhenCreated {
+            plantViewModel.getAllPlants.collect { plants ->
+                adapter.differ.submitList(plants)
+            }
         }
+
+        adapter.setonItemClickListener {
+            Toast.makeText(requireContext(), "Check", Toast.LENGTH_LONG).show()
+            val bundle = Bundle()
+            bundle.putParcelable(Constants.KEY, it)
+           findNavController().navigate(R.id.action_plantsFragment_to_plantDetailFragment, bundle)
+
+        }
+
         setUpRecyclerView()
 
 

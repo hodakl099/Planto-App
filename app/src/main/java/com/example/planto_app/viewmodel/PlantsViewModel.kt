@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PlantsViewModel @Inject constructor(val repository: PlantRepository) : ViewModel() {
 
-    val getAllPlants : LiveData<List<Plant>> = repository.getAllPlants()
+    val getAllPlants : Flow<List<Plant>> = repository.getAllPlants()
 
     //add new Plant
     fun addPlant(plant: Plant) {
@@ -39,10 +39,15 @@ class PlantsViewModel @Inject constructor(val repository: PlantRepository) : Vie
     }
 
 
+
     // to delete all plants in Plant table.
     fun deleteAllPlants(plant: Plant) {
         repository.deleteAllPlants()
     }
+
+
+    fun getTransactionById(id: Int) : LiveData<Plant> = repository.getTransactionById(id)
+
 
 
 }

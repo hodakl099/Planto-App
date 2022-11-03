@@ -22,4 +22,7 @@ class PlantRepository @Inject constructor(private val database: PlantDatabase) {
     //delete all plants
     fun deleteAllPlants() = database.plantDao().deleteAllPlants()
 
+    // get transaction by id
+    fun getTransactionById(id : Int) = database.plantDao().getTransactionByID(id)
+
 }

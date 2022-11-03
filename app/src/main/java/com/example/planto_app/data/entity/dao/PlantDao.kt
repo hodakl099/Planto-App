@@ -28,11 +28,15 @@ interface PlantDao {
 
     // get all plants in Plants table.
     @Query("SELECT * FROM plants")
-     fun getAllPlants() : LiveData<List<Plant>>
+     fun getAllPlants() : Flow<List<Plant>>
 
      //Delete all plants in Plants Table.
     @Query("Delete From plants")
     fun deleteAllPlants()
+
+    // get single transaction by id
+    @Query("SELECT * FROM plants WHERE id = :id")
+    fun getTransactionByID(id: Int): LiveData<Plant>
 
 
 
