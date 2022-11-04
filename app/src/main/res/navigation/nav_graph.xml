@@ -16,10 +16,6 @@
         <action
             android:id="@+id/action_plantsFragment_to_addPlantFragment"
             app:destination="@id/addPlantFragment" />
-<!--        <argument-->
-<!--            android:name="currentPlant"-->
-<!--            app:argType="com.example.planto_app.data.entity.Plant"-->
-<!--            app:nullable="true" />-->
     </fragment>
     <fragment
         android:id="@+id/plantDetailFragment"

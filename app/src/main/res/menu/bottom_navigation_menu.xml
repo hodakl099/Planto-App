@@ -7,11 +7,11 @@
         android:icon="@drawable/ic_launcher_background"
         tools:ignore="MenuTitle" />
 
-    <item
-        android:id="@+id/plantDetailFragment"
-        android:enabled="true"
-        android:icon="@drawable/ic_launcher_background"
-        tools:ignore="MenuTitle" />
+<!--    <item-->
+<!--        android:id="@+id/plantDetailFragment"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_launcher_background"-->
+<!--        tools:ignore="MenuTitle" />-->
 
 
 </menu>

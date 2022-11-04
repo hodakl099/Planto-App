@@ -52,16 +52,15 @@ class PlantFragment : Fragment() {
             }
         }
 
+        setUpRecyclerView()
+
         adapter.setonItemClickListener {
             Toast.makeText(requireContext(), "Check", Toast.LENGTH_LONG).show()
             val bundle = Bundle()
-            bundle.putParcelable(Constants.KEY, it)
-           findNavController().navigate(R.id.action_plantsFragment_to_plantDetailFragment, bundle)
+            bundle.putSerializable(Constants.KEY, it)
+            findNavController().navigate(R.id.action_plantsFragment_to_plantDetailFragment, bundle)
 
         }
-
-        setUpRecyclerView()
-
 
         return binding.root
 

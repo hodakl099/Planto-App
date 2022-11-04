@@ -41,8 +41,8 @@
                         android:layout_height="50dp"
                         android:padding="10dp"
                         android:src="@drawable/photo_camera"
-                        app:layout_constraintBottom_toBottomOf="@+id/plant_img"
-                        app:layout_constraintEnd_toStartOf="@+id/plant_img"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgCard"
+                        app:layout_constraintEnd_toStartOf="@+id/imgCard"
                         app:tint="@color/black" />
 
                     <ImageView
@@ -52,18 +52,30 @@
                         android:padding="10dp"
                         android:src="@drawable/add"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/plant_img"
+                        app:layout_constraintStart_toEndOf="@+id/imgCard"
                         app:tint="@color/black" />
 
-                    <ImageView
-                        android:id="@+id/plant_img"
-                        android:layout_width="100dp"
-                        android:layout_height="103dp"
-                        android:src="@drawable/ic_baseline_photo_24"
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/imgCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardCornerRadius="75dp">
+                        <ImageView
+                            android:id="@+id/plant_img"
+                            android:layout_width="103dp"
+                            android:layout_height="103dp"
+                            android:src="@drawable/ic_baseline_photo_24"
+                      />
+
+                    </androidx.cardview.widget.CardView>
+
+
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

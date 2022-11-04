@@ -1,5 +1,6 @@
 package com.example.planto_app.ui
 
+
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -86,12 +87,12 @@ class AddPlantFragment : Fragment() {
 
         binding.etPlantLocation
             .setAdapter(
-            ArrayAdapter(
-                requireContext(),
-                R.layout.drop_down_item,
-                Constants(requireContext()).PLANT_LOCATION
+                ArrayAdapter(
+                    requireContext(),
+                    R.layout.drop_down_item,
+                    Constants(requireContext()).PLANT_LOCATION
+                )
             )
-        )
         // set default text
         binding.etPlantLocation.setText(Constants(requireContext()).PLANT_LOCATION[0], false)
 
@@ -115,9 +116,9 @@ class AddPlantFragment : Fragment() {
         val dpd = DatePickerDialog(requireContext(), { _, mYear, mMonth, mDay ->
             binding.etAdoptionDate.apply {
                 setText("$mDay/${mMonth + 1}/$mYear")
-                    isClickable = true
-                    isFocusable = true
-                    isFocusableInTouchMode
+                isClickable = true
+                isFocusable = true
+                isFocusableInTouchMode
 
             }
         }, year, month, day)
@@ -125,7 +126,7 @@ class AddPlantFragment : Fragment() {
 
 
         binding.etAdoptionDate.setOnClickListener {
-                dpd.show()
+            dpd.show()
         }
         binding.addPlant.setOnClickListener {
 

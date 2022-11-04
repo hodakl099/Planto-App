@@ -1,7 +1,6 @@
 package com.example.planto_app
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +15,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.planto_app.databinding.ActivityMainBinding
-import com.example.planto_app.ui.AddPlantFragment
 import com.example.planto_app.ui.PlantFragment
 import com.example.planto_app.ui.PlantFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -96,13 +94,5 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
-    val pickImageFromGalleryForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            // handle image from gallery
-        }
-    }
-
-
 
 }

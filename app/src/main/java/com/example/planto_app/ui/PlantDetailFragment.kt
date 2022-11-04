@@ -30,6 +30,8 @@ class PlantDetailFragment : Fragment() {
 
         _binding = FragmentPlantDetailBinding.inflate(layoutInflater, container,false)
 
+        getCurrPlantContent()
+
         return binding.root
     }
 
@@ -43,7 +45,6 @@ class PlantDetailFragment : Fragment() {
             plantDetailCardView.apply {
                 tvPlantName.text = it.plantName
                 tvPlantType.text = it.plantType
-                tvLivingRoom.text = it.plantLocation
                 plantImg.setImageBitmap(it.plantImage)
             }
 

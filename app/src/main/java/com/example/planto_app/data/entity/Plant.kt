@@ -1,14 +1,12 @@
 package com.example.planto_app.data.entity
 
 import android.graphics.Bitmap
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
 
-@Parcelize
+
 @Entity(tableName = "plants")
 data class Plant(
     @PrimaryKey(autoGenerate = true)
@@ -29,4 +27,4 @@ data class Plant(
     val plantLocation : String,
     @ColumnInfo(name = "plantNote")
     val plantNote : String
-    ) : Parcelable
+    ) : java.io.Serializable
