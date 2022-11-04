@@ -141,27 +141,26 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <SeekBar
+                <com.ramotion.fluidslider.FluidSlider
                     android:id="@+id/seekBarWatering"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    app:size="small"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="0dp"
                     android:layout_marginEnd="34dp"
-                    android:max="10"
-                    android:progress="3" />
+                    app:bar_color="@color/greensh"
+                    />
 
-                <SeekBar
+                <com.ramotion.fluidslider.FluidSlider
                     android:id="@+id/seekBarLight"
-                    style="@style/Widget.AppCompat.SeekBar.Discrete"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    app:size="small"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="0dp"
                     android:layout_marginEnd="34dp"
-                    android:max="10"
-                    android:progress="3" />
+                    app:bar_color="@color/greensh"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/plant_location"

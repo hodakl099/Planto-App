@@ -17,6 +17,12 @@ class PlantsViewModel @Inject constructor(val repository: PlantRepository) : Vie
 
     val getAllPlants : Flow<List<Plant>> = repository.getAllPlants()
 
+    private var _shouldAnimate = false
+    val shouldAnimate get() =
+        _shouldAnimate
+
+
+
     //add new Plant
     fun addPlant(plant: Plant) {
         viewModelScope.launch(Dispatchers.IO){

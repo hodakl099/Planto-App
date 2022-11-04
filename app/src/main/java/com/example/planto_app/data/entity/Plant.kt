@@ -20,9 +20,9 @@ data class Plant(
     @ColumnInfo(name = "plantAdoptionDate")
     val AdoptionDate : String,
     @ColumnInfo(name = "dailyWatering")
-    val dailyWatering : Int,
+    val dailyWatering : Int?,
     @ColumnInfo(name = "outdoorLight")
-    val outdoorLight : Int,
+    val outdoorLight : Int?,
     @ColumnInfo(name = "plantLocation")
     val plantLocation : String,
     @ColumnInfo(name = "plantNote")

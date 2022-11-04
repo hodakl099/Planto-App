@@ -49,6 +49,9 @@ class AddPlantFragment : Fragment() {
     private val GALLERY_REQUEST_CODE = 2
 
 
+    private val max = 10
+    private val min = 1
+    private val total = max - min
 
     private val binding get() = _binding!!
 
@@ -58,8 +61,6 @@ class AddPlantFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentAddPlantBinding.inflate(layoutInflater,container,false)
-
-
 
         binding.ivCameraIcon.setOnClickListener {
             cameraCheckPermission()
@@ -161,6 +162,9 @@ class AddPlantFragment : Fragment() {
 
         }
 
+
+        // To set up watering and outdoor seekbar.
+        setUpSeekBar()
 
         return binding.root
     }
@@ -298,14 +302,28 @@ class AddPlantFragment : Fragment() {
         val plantName = binding.plantName.text.toString()
         val plantType = binding.etPlantType.text.toString()
         val adoptionDate = binding.etAdoptionDate.text.toString()
-        val watering = binding.seekBarWatering.progress
-        val outdoorLight = binding.seekBarLight.progress
+        val watering = binding.seekBarWatering.bubbleText?.toInt()
+        val outdoorLight = binding.seekBarLight.bubbleText?.toInt()
         val plantLocation = binding.etPlantLocation.text.toString()
         val note = binding.plantNoteEditText.text.toString()
 
         return Plant(plantId ,plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note)
 
     }
+
+    //set up watering seek bar and outdoor seek bar.
+    private fun setUpSeekBar() {
+        binding.seekBarWatering.positionListener = { pos -> binding.seekBarWatering.bubbleText = "${min + (total * pos).toInt()}" }
+        binding.seekBarWatering.position = 0.3f
+        binding.seekBarWatering.startText = "$min"
+        binding.seekBarWatering.endText = "$max"
+
+        binding.seekBarLight.positionListener = { pos -> binding.seekBarLight.bubbleText = "${min + (total * pos).toInt()}" }
+        binding.seekBarLight.position = 0.1f
+        binding.seekBarLight.startText = "$min"
+        binding.seekBarLight.endText = "$max"
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -1,6 +1,7 @@
 package com.example.planto_app.ui
 
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,7 +26,7 @@ class PlantDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
         _binding = FragmentPlantDetailBinding.inflate(layoutInflater, container,false)
@@ -53,6 +54,7 @@ class PlantDetailFragment : Fragment() {
         }
 
     }
+
 
 
     override fun onDestroyView() {
