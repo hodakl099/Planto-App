@@ -3,29 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="100dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
+
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plant_detail_card_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="100dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="100dp"
+        >
 
 
         <TextView
             android:id="@+id/tv_plant_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/plant_img"
-            app:layout_constraintStart_toStartOf="@+id/plant_img"
-            app:layout_constraintTop_toBottomOf="@+id/plant_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Plant Type" />
 
         <TextView
@@ -35,6 +40,7 @@
             android:layout_marginTop="8dp"
             android:textColor="@color/black"
             android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_type"
             app:layout_constraintStart_toStartOf="@+id/tv_plant_type"
             app:layout_constraintTop_toBottomOf="@+id/tv_plant_type"
             tools:text="Plant Name" />
@@ -42,52 +48,97 @@
 
         <ImageView
             android:id="@+id/plant_img"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="100dp"
+            android:layout_height="103dp"
             android:layout_marginTop="12dp"
             android:src="@drawable/ic_baseline_photo_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_plant_type"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_plant_type"
+            app:layout_constraintTop_toBottomOf="@+id/tv_plant_name" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/progress_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/purple_200">
+            android:id="@+id/watering_and_outdoor_cv"
+            android:layout_width="165dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/purple_200"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plant_img">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:foregroundTint="@color/black"
-                >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_outdoor_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="1dp"
+                    android:src="@drawable/sun_plant"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_x_outdoor"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_x_outdoor" />
+
+
+                <TextView
+                    android:id="@+id/tv_x_outdoor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvOutDoorDays"
+                    app:layout_constraintEnd_toStartOf="@+id/tvOutDoorDays"
+                    android:text="@string/x" />
+
+                <TextView
+                    android:id="@+id/tvOutDoorDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_water_icon"
+                    tools:text="1" />
+
+                <ImageView
+                    android:id="@+id/iv_water_icon"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:src="@drawable/fill_drip"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_x_watering"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_x_watering" />
+
+                <TextView
+                    android:id="@+id/tv_x_watering"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_watering_days"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.636"
+                    android:text="@string/x" />
 
                 <TextView
                     android:id="@+id/tv_watering_days"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="36dp"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="24dp"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_x_watering"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/tv_outdoor_days"
-                    tools:text="WateringDays" />
-
-                <TextView
-                    android:id="@+id/tv_outdoor_days"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_watering_days"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="outdoor days" />
-
+                    tools:text="1" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
         </androidx.cardview.widget.CardView>

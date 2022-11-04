@@ -40,7 +40,7 @@ class PlantFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-       _binding = FragmentPlantBinding.inflate(inflater,container,false)
+        _binding = FragmentPlantBinding.inflate(inflater,container,false)
 
         adapter = PlantAdapter()
 
@@ -55,7 +55,6 @@ class PlantFragment : Fragment() {
         setUpRecyclerView()
 
         adapter.setonItemClickListener {
-            Toast.makeText(requireContext(), "Check", Toast.LENGTH_LONG).show()
             val bundle = Bundle()
             bundle.putSerializable(Constants.KEY, it)
             findNavController().navigate(R.id.action_plantsFragment_to_plantDetailFragment, bundle)

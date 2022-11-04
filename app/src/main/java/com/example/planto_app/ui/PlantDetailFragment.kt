@@ -1,5 +1,6 @@
 package com.example.planto_app.ui
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
-import com.example.planto_app.R
 import com.example.planto_app.databinding.FragmentPlantDetailBinding
 import com.example.planto_app.viewmodel.PlantsViewModel
 
@@ -45,6 +45,8 @@ class PlantDetailFragment : Fragment() {
             plantDetailCardView.apply {
                 tvPlantName.text = it.plantName
                 tvPlantType.text = it.plantType
+                tvOutDoorDays.text = it.outdoorLight.toString()
+                tvWateringDays.text = it.dailyWatering.toString()
                 plantImg.setImageBitmap(it.plantImage)
             }
 
