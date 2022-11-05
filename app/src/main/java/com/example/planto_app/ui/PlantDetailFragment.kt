@@ -3,6 +3,7 @@ package com.example.planto_app.ui
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.planto_app.databinding.FragmentPlantDetailBinding
 import com.example.planto_app.viewmodel.PlantsViewModel
+
+
+private const val TAG = "PlantDetailFragment"
 
 
 class PlantDetailFragment : Fragment() {
@@ -68,20 +72,23 @@ class PlantDetailFragment : Fragment() {
         binding.plantDetailCardView.btnWater.setOnClickListener{ btn ->
 
 
-            counter = binding.plantDetailCardView.progressBar.progress
+            while (counter  < 100) {
+                counter++
 
-            while (counter < 100) {
-                counter += 1
+                Log.i(TAG,"counter is $counter")
 
                 binding.plantDetailCardView.progressBar.isVisible = true
 
-                //update progress bar and animate to watered check.
+//                update progress bar and animate to watered check.
                 binding.plantDetailCardView.progressBar.progress = counter
 
-                if (counter == 100) {
-                    binding.plantDetailCardView.progressBar.isVisible = false
-                    binding.plantDetailCardView.tvPlantName.text = binding.plantDetailCardView.progressBar.progress.toString()
+
+                when (counter) {
+                    100 -> {
+                        binding.plantDetailCardView.btnWater.text = counter.toString()
+                    }
                 }
+
             }
 
 

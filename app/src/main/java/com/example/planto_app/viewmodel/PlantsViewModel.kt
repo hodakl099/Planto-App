@@ -1,25 +1,60 @@
 package com.example.planto_app.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.planto_app.data.entity.Plant
 import com.example.planto_app.repository.PlantRepository
+import com.example.planto_app.worker.WaterReminderWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 
 @HiltViewModel
-class PlantsViewModel @Inject constructor(val repository: PlantRepository) : ViewModel() {
+class PlantsViewModel @Inject constructor(val repository: PlantRepository,context: Context) : ViewModel() {
 
     val getAllPlants : Flow<List<Plant>> = repository.getAllPlants()
 
     private var _shouldAnimate = false
     val shouldAnimate get() =
         _shouldAnimate
+
+    private val workManager = WorkManager.getInstance(context)
+
+    internal fun scheduleReminder(
+        duration: Long,
+        unit: TimeUnit,
+        plantName: String
+    ) {
+        // TODO: create a Data instance with the plantName passed to it
+        val data = Data.Builder()
+            .putString(WaterReminderWorker.nameKey,plantName)
+            .build()
+
+        // TODO: Generate a OneTimeWorkRequest with the passed in duration, time unit, and data
+        //  instance
+
+        val reminderWorkRequest = OneTimeWorkRequestBuilder<WaterReminderWorker>()
+            .setInputData(data)
+            .setInitialDelay(duration,unit)
+            .build()
+
+
+
+
+        // TODO: Enqueue the request as a unique work request
+        workManager.enqueue(reminderWorkRequest)
+    }
+
 
 
 

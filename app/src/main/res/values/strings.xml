@@ -32,4 +32,6 @@
     <string name="creepers">Creepers</string>
     <string name="cucumber">Cucumber</string>
     <string name="x">X</string>
+    <string name="watering_reminder">Watering Reminder</string>
+    <string name="outdoor_reminder">Outdoor Reminder</string>
 </resources>

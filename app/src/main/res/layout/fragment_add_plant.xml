@@ -110,9 +110,50 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/et_plant_type"
-                        android:layout_width="match_parent"
+                        android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:hint="@string/type"
+                        android:inputType="none"
+                        android:padding="15dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/watering_reminder"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="34dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_watering_reminder"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:hint="@string/watering_reminder"
+                        android:inputType="none"
+                        android:padding="15dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outdoor_reminder"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="34dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/et_outdoor_reminder"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:hint="@string/outdoor_reminder"
                         android:inputType="none"
                         android:padding="15dp"
                         android:paddingStart="8dp"
@@ -141,26 +182,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.ramotion.fluidslider.FluidSlider
-                    android:id="@+id/seekBarWatering"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    app:size="small"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="34dp"
-                    app:bar_color="@color/greensh"
-                    />
 
-                <com.ramotion.fluidslider.FluidSlider
-                    android:id="@+id/seekBarLight"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    app:size="small"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="34dp"
-                    app:bar_color="@color/greensh"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/plant_location"
