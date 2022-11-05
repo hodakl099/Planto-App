@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.example.planto_app.databinding.FragmentPlantDetailBinding
@@ -21,6 +22,8 @@ class PlantDetailFragment : Fragment() {
 
     private val args : PlantDetailFragmentArgs by navArgs()
 
+    private var counter = 0
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,7 +34,11 @@ class PlantDetailFragment : Fragment() {
 
         _binding = FragmentPlantDetailBinding.inflate(layoutInflater, container,false)
 
+        // get current plant information.
         getCurrPlantContent()
+
+        // to setup watering progress bar.
+        setUpProgressWatering()
 
         return binding.root
     }
@@ -48,8 +55,36 @@ class PlantDetailFragment : Fragment() {
                 tvPlantType.text = it.plantType
                 tvOutDoorDays.text = it.outdoorLight.toString()
                 tvWateringDays.text = it.dailyWatering.toString()
+                tvAdoptionDate.text = it.AdoptionDate
                 plantImg.setImageBitmap(it.plantImage)
             }
+
+        }
+
+    }
+
+    // To setUp progress for watering plants.
+    private fun setUpProgressWatering() {
+        binding.plantDetailCardView.btnWater.setOnClickListener{ btn ->
+
+
+            counter = binding.plantDetailCardView.progressBar.progress
+
+            while (counter < 100) {
+                counter += 1
+
+                binding.plantDetailCardView.progressBar.isVisible = true
+
+                //update progress bar and animate to watered check.
+                binding.plantDetailCardView.progressBar.progress = counter
+
+                if (counter == 100) {
+                    binding.plantDetailCardView.progressBar.isVisible = false
+                    binding.plantDetailCardView.tvPlantName.text = binding.plantDetailCardView.progressBar.progress.toString()
+                }
+            }
+
+
 
         }
 

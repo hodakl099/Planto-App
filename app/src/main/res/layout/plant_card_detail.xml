@@ -14,10 +14,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plant_detail_card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="351dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="100dp"
-        >
+        android:layout_marginBottom="30dp">
 
 
         <TextView
@@ -88,10 +87,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
+                    android:text="@string/x"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/tvOutDoorDays"
-                    app:layout_constraintEnd_toStartOf="@+id/tvOutDoorDays"
-                    android:text="@string/x" />
+                    app:layout_constraintEnd_toStartOf="@+id/tvOutDoorDays" />
 
                 <TextView
                     android:id="@+id/tvOutDoorDays"
@@ -119,12 +118,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:text="@string/x"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/tv_watering_days"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.636"
-                    android:text="@string/x" />
+                    app:layout_constraintVertical_bias="0.636" />
 
                 <TextView
                     android:id="@+id/tv_watering_days"
@@ -139,9 +138,127 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_adoption_date"
+            android:layout_width="165dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="-10dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/purple_200"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/watering_and_outdoor_cv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/iv_plant_start_day"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginBottom="1dp"
+                    android:src="@drawable/plant_start_day"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_plant_days_count"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/tv_plant_days_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+
+                    android:textColor="@color/white"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_adoption_date"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_adoption_date"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/iv_plant_start_day"
+                    tools:text="1" />
+
+                <TextView
+                    android:id="@+id/tv_adoption_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.822"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.545"
+                    tools:text="12/02/2001" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:id="@+id/iv_edit_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/pen_to_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_calendar_check"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/calendar_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_edit_icon" />
+
+        <ImageView
+            android:id="@+id/ic_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/trash_can"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_calendar_check" />
+
+        <Button
+            android:id="@+id/btn_water"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_style"
+            android:text="Water"
+            android:textSize="8sp"
+            app:icon="@drawable/plant_start_day"
+            app:iconSize="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_adoption_date"
+            app:layout_constraintVertical_bias="0.23" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:indeterminate = "true"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.225"
+            app:layout_constraintStart_toEndOf="@+id/btn_water" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

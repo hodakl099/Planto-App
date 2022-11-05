@@ -324,6 +324,8 @@ class AddPlantFragment : Fragment() {
         binding.seekBarLight.endText = "$max"
     }
 
+
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
