@@ -1,5 +1,6 @@
 package com.example.planto_app.worker
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -20,6 +21,7 @@ class WaterReminderWorker(
     // Arbitrary id number
     private val notificationId = 11
 
+    @SuppressLint("UnspecifiedImmutableFlag")
     override fun doWork(): Result {
         val intent = Intent(applicationContext, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -47,6 +49,5 @@ class WaterReminderWorker(
 
     companion object {
         const val nameKey = "NAME"
-        const val doType = "TYPE"
     }
 }

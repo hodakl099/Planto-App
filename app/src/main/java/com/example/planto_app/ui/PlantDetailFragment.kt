@@ -9,17 +9,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.planto_app.Constants
+import com.example.planto_app.R
 import com.example.planto_app.databinding.FragmentPlantDetailBinding
 import com.example.planto_app.viewmodel.PlantsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
-private const val TAG = "PlantDetailFragment"
-
-
+@AndroidEntryPoint
 class PlantDetailFragment : Fragment() {
 
     private  var _binding: FragmentPlantDetailBinding? = null
@@ -27,8 +27,6 @@ class PlantDetailFragment : Fragment() {
     private val plantViewModel : PlantsViewModel by activityViewModels()
 
     private val args : PlantDetailFragmentArgs by navArgs()
-
-    private var counter = 0
 
     private val binding get() = _binding!!
 
@@ -43,6 +41,8 @@ class PlantDetailFragment : Fragment() {
         // get current plant information.
         getCurrPlantContent()
 
+        val test =  args.currentPlant.id
+        Log.i("TEST","$test")
 
         return binding.root
     }
@@ -54,12 +54,11 @@ class PlantDetailFragment : Fragment() {
 
         val currentPlant = plantViewModel.getTransactionById(args.currentPlant.id)
 
-        currentPlant.observe(viewLifecycleOwner) {
+        currentPlant.observe(viewLifecycleOwner) {plant ->
             plantDetailCardView.apply {
-                tvPlantName.text = it.plantName
-                tvPlantType.text = it.plantType
-//                tvWateringDays.text =
-                when (it.dailyWatering) {
+                tvPlantName.text = plant.plantName
+                tvPlantType.text = plant.plantType
+                when (plant.dailyWatering) {
                     Constants.DAILY -> {
                         tvWateringDays.text = "1"
                     }
@@ -71,11 +70,21 @@ class PlantDetailFragment : Fragment() {
                     }
                 }
 
-                tvAdoptionDate.text = it.AdoptionDate
-                plantImg.setImageBitmap(it.plantImage)
+                tvAdoptionDate.text = plant.AdoptionDate
+                plantImg.setImageBitmap(plant.plantImage)
+            }
+
+
+            binding.plantDetailCardView.ivEditIcon.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putSerializable(Constants.KEY, plant)
+
+                findNavController().navigate(R.id.action_plantDetailFragment_to_editPlantFragment,bundle)
+
             }
 
         }
+
 
     }
 

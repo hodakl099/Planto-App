@@ -28,6 +28,9 @@
         <argument
             android:name="currentPlant"
             app:argType="com.example.planto_app.data.entity.Plant" />
+        <action
+            android:id="@+id/action_plantDetailFragment_to_editPlantFragment"
+            app:destination="@id/editPlantFragment" />
     </fragment>
     <fragment
         android:id="@+id/addPlantFragment"
@@ -37,6 +40,21 @@
         <action
             android:id="@+id/action_addPlantFragment_to_plantsFragment"
             app:destination="@id/plantsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPlantFragment"
+        android:name="com.example.planto_app.ui.EditPlantFragment"
+        android:label="fragment_edit_plant"
+        tools:layout="@layout/fragment_edit_plant" >
+        <action
+            android:id="@+id/action_editPlantFragment_to_plantsFragment"
+            app:destination="@id/plantsFragment" />
+<!--        <argument-->
+<!--            android:name="currentPlant"-->
+<!--            app:argType="com.example.planto_app.data.entity.Plant" />-->
+        <action
+            android:id="@+id/action_editPlantFragment_to_plantDetailFragment"
+            app:destination="@id/plantDetailFragment" />
     </fragment>
 
 </navigation>

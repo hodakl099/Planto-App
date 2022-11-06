@@ -1,9 +1,8 @@
 package com.example.planto_app.viewmodel
 
-import android.app.Application
+
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.Data
@@ -28,9 +27,7 @@ class PlantsViewModel @Inject constructor(
 
     val getAllPlants : Flow<List<Plant>> = repository.getAllPlants()
 
-    private var _shouldAnimate = false
-    val shouldAnimate get() =
-        _shouldAnimate
+
 
     private val workManager = WorkManager.getInstance(context)
 
