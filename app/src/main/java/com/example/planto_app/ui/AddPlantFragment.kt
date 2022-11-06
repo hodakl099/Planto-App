@@ -145,21 +145,24 @@ class AddPlantFragment : Fragment() {
         binding.addPlant.setOnClickListener {
 
             binding.apply {
-                val (plantId,plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note) = getPlantContent()
+                val (plantId,plantImage,plantName,plantType,adoptionDate,watering,plantLocation,note) = getPlantContent()
 
                 // validate if plant content is empty or not
                 when {
                     plantName.isEmpty() -> {
-                        this.plantNameInput.error = "Plant name must note be empty"
+                        this.plantNameInput.error = "Plant name must not be empty"
                     }
                     plantType.isEmpty() -> {
-                        this.etPlantType.error = "Plant type must note be empty"
+                        this.etPlantType.error = "Plant type must not be empty"
+                    }
+                    watering.isEmpty() -> {
+                        this.etWateringReminder.error = "Plant water schedule must not be empty"
                     }
                     adoptionDate.isEmpty() -> {
-                        this.etAdoptionDate.error = "Plant adoption date must note be empty"
+                        this.etAdoptionDate.error = "Plant adoption date must not be empty"
                     }
                     plantLocation.isEmpty() -> {
-                        this.plantNameInput.error = "Plant location must note be empty"
+                        this.plantNameInput.error = "Plant location must not be empty"
                     }
                     else -> {
                         plantViewModel.addPlant(getPlantContent()).run {
@@ -176,7 +179,7 @@ class AddPlantFragment : Fragment() {
                     when {
                         it.etWateringReminder.text.toString() == Constants.DAILY -> {
                             plantViewModel.scheduleReminder(
-                                2, TimeUnit.SECONDS, binding.plantName.text.toString(),
+                                1, TimeUnit.DAYS, binding.plantName.text.toString(),
                             )
                         }
                         it.etWateringReminder.text.toString() === Constants.WEEKLY -> {
@@ -330,11 +333,12 @@ class AddPlantFragment : Fragment() {
         val plantImage =  binding.plantImg.drawable.toBitmap()
         val plantName = binding.plantName.text.toString()
         val plantType = binding.etPlantType.text.toString()
+        val plantWateringSchedule = binding.etWateringReminder.text.toString()
         val adoptionDate = binding.etAdoptionDate.text.toString()
         val plantLocation = binding.etPlantLocation.text.toString()
         val note = binding.plantNoteEditText.text.toString()
 
-        return Plant(plantId ,plantImage,plantName,plantType,adoptionDate,1,1,plantLocation,note)
+        return Plant(plantId ,plantImage,plantName,plantType,adoptionDate,plantWateringSchedule,plantLocation,note)
 
     }
 
