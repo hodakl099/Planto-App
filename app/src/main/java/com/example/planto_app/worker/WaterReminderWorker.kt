@@ -47,5 +47,6 @@ class WaterReminderWorker(
 
     companion object {
         const val nameKey = "NAME"
+        const val doType = "TYPE"
     }
 }

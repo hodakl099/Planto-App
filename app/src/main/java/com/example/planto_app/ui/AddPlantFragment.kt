@@ -38,6 +38,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
 
 import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class AddPlantFragment : Fragment() {
@@ -49,9 +50,6 @@ class AddPlantFragment : Fragment() {
     private val GALLERY_REQUEST_CODE = 2
 
 
-    private val max = 10
-    private val min = 1
-    private val total = max - min
 
     private val binding get() = _binding!!
 
@@ -98,7 +96,7 @@ class AddPlantFragment : Fragment() {
         binding.etPlantLocation.setText(Constants(requireContext()).PLANT_LOCATION[0], false)
 
 
-        binding.etPlantType
+      binding.etPlantType
             .setAdapter(
                 ArrayAdapter(
                     requireContext(),
@@ -106,8 +104,23 @@ class AddPlantFragment : Fragment() {
                     Constants(requireContext()).PLANT_TYPE
                 )
             )
-        // set Default text
+
+        // set Default item
         binding.etPlantType.setText(Constants(requireContext()).PLANT_TYPE[0], false)
+
+
+
+        binding.etWateringReminder
+            .setAdapter(
+                ArrayAdapter(
+                    requireContext(),
+                    R.layout.drop_down_item,
+                    Constants(requireContext()).WATERING_SCHEDUELE
+                )
+            )
+        // set default item
+        binding.etWateringReminder.setText(Constants(requireContext()).WATERING_SCHEDUELE[0], false)
+
 
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -159,12 +172,28 @@ class AddPlantFragment : Fragment() {
                     }
                 }
             }
+                .also {
+                    when {
+                        it.etWateringReminder.text.toString() == Constants.DAILY -> {
+                            plantViewModel.scheduleReminder(
+                                2, TimeUnit.SECONDS, binding.plantName.text.toString(),
+                            )
+                        }
+                        it.etWateringReminder.text.toString() === Constants.WEEKLY -> {
+                            plantViewModel.scheduleReminder(
+                                7,TimeUnit.DAYS, binding.plantName.text.toString(),
+                            )
+                        }
+                        it.etWateringReminder.text.toString() === Constants.MONTHLY -> {
+                            plantViewModel.scheduleReminder(
+                                30,TimeUnit.DAYS, binding.plantName.text.toString(),
+                            )
+                        }
+                    }
+                }
 
         }
 
-
-        // To set up watering and outdoor seekbar.
-        setUpSeekBar()
 
         return binding.root
     }
@@ -302,28 +331,12 @@ class AddPlantFragment : Fragment() {
         val plantName = binding.plantName.text.toString()
         val plantType = binding.etPlantType.text.toString()
         val adoptionDate = binding.etAdoptionDate.text.toString()
-        val watering = binding.seekBarWatering.bubbleText?.toInt()
-        val outdoorLight = binding.seekBarLight.bubbleText?.toInt()
         val plantLocation = binding.etPlantLocation.text.toString()
         val note = binding.plantNoteEditText.text.toString()
 
-        return Plant(plantId ,plantImage,plantName,plantType,adoptionDate,watering,outdoorLight,plantLocation,note)
+        return Plant(plantId ,plantImage,plantName,plantType,adoptionDate,1,1,plantLocation,note)
 
     }
-
-    //set up watering seek bar and outdoor seek bar.
-    private fun setUpSeekBar() {
-        binding.seekBarWatering.positionListener = { pos -> binding.seekBarWatering.bubbleText = "${min + (total * pos).toInt()}" }
-        binding.seekBarWatering.position = 0.3f
-        binding.seekBarWatering.startText = "$min"
-        binding.seekBarWatering.endText = "$max"
-
-        binding.seekBarLight.positionListener = { pos -> binding.seekBarLight.bubbleText = "${min + (total * pos).toInt()}" }
-        binding.seekBarLight.position = 0.1f
-        binding.seekBarLight.startText = "$min"
-        binding.seekBarLight.endText = "$max"
-    }
-
 
 
     override fun onDestroy() {

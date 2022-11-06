@@ -22,4 +22,11 @@ object AppModule {
             .build()
     }
 
+
+    @Singleton
+    @Provides
+    fun provideContext(@ApplicationContext context: Context) : Context {
+        return context
+    }
+
 }

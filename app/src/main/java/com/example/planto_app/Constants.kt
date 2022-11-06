@@ -6,6 +6,9 @@ class Constants(context: Context) {
 
     companion object{
         val KEY = "currentPlant"
+        val DAILY = "Daily"
+        val WEEKLY = "Weekly"
+        val MONTHLY = "Monthly"
     }
 
     val PLANT_LOCATION = arrayOf(
@@ -25,5 +28,12 @@ class Constants(context: Context) {
         context.getString(R.string.trees),
         context.getString(R.string.herbs)
     )
+
+    val WATERING_SCHEDUELE = arrayOf(
+        context.getString(R.string.daily),
+        context.getString(R.string.weekly),
+        context.getString(R.string.monthly)
+    )
+
 
 }

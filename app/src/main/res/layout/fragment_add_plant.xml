@@ -140,25 +140,7 @@
                         android:paddingEnd="8dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/outdoor_reminder"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="34dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="34dp">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/et_outdoor_reminder"
-                        android:layout_width="300dp"
-                        android:layout_height="match_parent"
-                        android:hint="@string/outdoor_reminder"
-                        android:inputType="none"
-                        android:padding="15dp"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/adoption_date"

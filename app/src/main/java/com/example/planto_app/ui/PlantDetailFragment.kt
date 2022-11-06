@@ -41,8 +41,6 @@ class PlantDetailFragment : Fragment() {
         // get current plant information.
         getCurrPlantContent()
 
-        // to setup watering progress bar.
-        setUpProgressWatering()
 
         return binding.root
     }
@@ -62,36 +60,6 @@ class PlantDetailFragment : Fragment() {
                 tvAdoptionDate.text = it.AdoptionDate
                 plantImg.setImageBitmap(it.plantImage)
             }
-
-        }
-
-    }
-
-    // To setUp progress for watering plants.
-    private fun setUpProgressWatering() {
-        binding.plantDetailCardView.btnWater.setOnClickListener{ btn ->
-
-
-            while (counter  < 100) {
-                counter++
-
-                Log.i(TAG,"counter is $counter")
-
-                binding.plantDetailCardView.progressBar.isVisible = true
-
-//                update progress bar and animate to watered check.
-                binding.plantDetailCardView.progressBar.progress = counter
-
-
-                when (counter) {
-                    100 -> {
-                        binding.plantDetailCardView.btnWater.text = counter.toString()
-                    }
-                }
-
-            }
-
-
 
         }
 
