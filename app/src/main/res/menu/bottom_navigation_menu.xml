@@ -10,7 +10,7 @@
     <item
         android:id="@+id/discoverPlantsFragment"
         android:enabled="true"
-        android:icon="@drawable/leaf_icon"
+        android:icon="@drawable/descover_icon"
         tools:ignore="MenuTitle" />
 
 

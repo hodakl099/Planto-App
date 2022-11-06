@@ -15,6 +15,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.planto_app.databinding.ActivityMainBinding
+import com.example.planto_app.ui.DiscoverPlantsFragment
 import com.example.planto_app.ui.PlantFragment
 import com.example.planto_app.ui.PlantFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -53,6 +54,11 @@ class MainActivity : AppCompatActivity() {
                 PlantFragment::class.qualifiedName -> {
                     binding.addPlantFab.visibility = View.VISIBLE
                     binding.bottomNavView.visibility = View.VISIBLE
+                }
+                DiscoverPlantsFragment::class.qualifiedName ->
+                {
+                    binding.bottomNavView.visibility = View.VISIBLE
+
                 }
                 else -> {
                     binding.addPlantFab.visibility = View.GONE
