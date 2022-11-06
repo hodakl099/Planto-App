@@ -45,8 +45,8 @@ class EditPlantFragment : Fragment() {
 
     private val args : PlantDetailFragmentArgs by navArgs()
     private var _binding : FragmentEditPlantBinding? = null
-    private val CAMERA_REQUEST_CODE = 1
-    private val GALLERY_REQUEST_CODE = 2
+    private val CAMERA_REQUEST_CODE = 3
+    private val GALLERY_REQUEST_CODE = 7
 
 
 
@@ -83,12 +83,14 @@ class EditPlantFragment : Fragment() {
             pictureDialog.show()
         }
 
+        getData()
+
         binding.editInputFields.addPlant.setOnClickListener {
             updateCurrentPlant()
         }
 
 
-        getData()
+
 
         return binding.root
     }

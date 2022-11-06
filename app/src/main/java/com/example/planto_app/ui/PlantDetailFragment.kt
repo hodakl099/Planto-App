@@ -41,9 +41,6 @@ class PlantDetailFragment : Fragment() {
         // get current plant information.
         getCurrPlantContent()
 
-        val test =  args.currentPlant.id
-        Log.i("TEST","$test")
-
         return binding.root
     }
 

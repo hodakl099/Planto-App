@@ -3,7 +3,9 @@ package com.example.planto_app.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
@@ -51,6 +53,9 @@ class PlantsViewModel @Inject constructor(
     }
 
 
+    private var _counter = MutableLiveData(0)
+    val counter get() =
+        _counter
 
 
     //add new Plant
@@ -59,6 +64,13 @@ class PlantsViewModel @Inject constructor(
             repository.insertPlant(plant)
         }
     }
+
+    fun test() {
+        while (_counter.value!! < 100) {
+            _counter.value =+ 1
+        }
+    }
+
 
     //update plant
     fun updatePlant(plant: Plant) {

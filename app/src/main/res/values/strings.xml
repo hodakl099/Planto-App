@@ -25,8 +25,8 @@
 
 
     <!-- drop down plants types -->
-    <string name="herbs">Herbs</string>
-    <string name="trees">Trees</string>
+    <string name="herbs">Herbs   </string>
+    <string name="trees">Trees   </string>
     <string name="shrubs">Shrubs</string>
     <string name="climbers">Climbers</string>
     <string name="creepers">Creepers</string>

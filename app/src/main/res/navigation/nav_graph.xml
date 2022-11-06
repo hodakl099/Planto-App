@@ -49,12 +49,14 @@
         <action
             android:id="@+id/action_editPlantFragment_to_plantsFragment"
             app:destination="@id/plantsFragment" />
-<!--        <argument-->
-<!--            android:name="currentPlant"-->
-<!--            app:argType="com.example.planto_app.data.entity.Plant" />-->
         <action
             android:id="@+id/action_editPlantFragment_to_plantDetailFragment"
             app:destination="@id/plantDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/discoverPlantsFragment"
+        android:name="com.example.planto_app.ui.DiscoverPlantsFragment"
+        android:label="fragment_discover_plants"
+        tools:layout="@layout/fragment_discover_plants" />
 
 </navigation>
