@@ -22,6 +22,7 @@ import com.example.planto_app.adapter.DiscoverPlantsAdapter
 import com.example.planto_app.data.entity.DiscoveryItem
 import com.example.planto_app.databinding.FragmentDiscoverPlantsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.nio.channels.InterruptedByTimeoutException
 
 
 /**
@@ -72,12 +73,30 @@ class DiscoverPlantsFragment : Fragment() {
                 }
                 "Plant Identification" -> {
                     try {
+
+                        val lensIntent = Intent(Intent.ACTION_VIEW)
+
+                        lensIntent.setPackage("com.google.ar.lens")
+
+                        startActivity(lensIntent)
+
                     } catch (e: ActivityNotFoundException){
                         e.printStackTrace()
                     }
                 }
                 "Plant Shop" -> {
-                    Toast.makeText(requireContext(), "Plant Shop", Toast.LENGTH_LONG).show()
+                    try {
+
+                        val searchPlants = Uri.parse("geo:41.0082,28.9784?q=plants shop")
+                        val mapIntent = Intent(Intent.ACTION_VIEW,searchPlants)
+
+                        mapIntent.setPackage("com.google.android.apps.maps",)
+
+                        startActivity(mapIntent)
+
+                    } catch (e: ActivityNotFoundException){
+                        e.printStackTrace()
+                    }
                 }
             }
         }
