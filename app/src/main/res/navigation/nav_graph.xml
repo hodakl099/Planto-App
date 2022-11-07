@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/discoverPlantsFragment"
         android:name="com.example.planto_app.ui.DiscoverPlantsFragment"
-        android:label="fragment_discover_plants"
+        android:label="Discover"
         tools:layout="@layout/fragment_discover_plants" />
 
 </navigation>

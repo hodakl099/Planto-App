@@ -1,60 +1,129 @@
 package com.example.planto_app.ui
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.planto_app.Constants
 import com.example.planto_app.R
+import com.example.planto_app.adapter.DiscoverPlantsAdapter
+import com.example.planto_app.data.entity.DiscoveryItem
+import com.example.planto_app.databinding.FragmentDiscoverPlantsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  * Use the [DiscoverPlantsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+@AndroidEntryPoint
 class DiscoverPlantsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding : FragmentDiscoverPlantsBinding? = null
 
+    private val binding get() = _binding!!
+
+    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var adapter: DiscoverPlantsAdapter
+
+    private lateinit var listOfDiscovery : MutableList<DiscoveryItem>
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_discover_plants, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DiscoverPlantsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DiscoverPlantsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        _binding = FragmentDiscoverPlantsBinding.inflate(layoutInflater, container, false)
+
+
+       recyclerView = binding.rvDiscovery
+
+
+        setUpRecyclerView()
+
+        adapter.setonItemClickListener {
+
+            when (it.itemTitle) {
+                "Plant Articles" -> {
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW).apply {
+                            data = Uri.parse(Constants.PLANT_ARTICLE_URL)
+                        })
+                    } catch (e: ActivityNotFoundException){
+                        e.printStackTrace()
+                    }
+                }
+                "Plant Identification" -> {
+                    try {
+                    } catch (e: ActivityNotFoundException){
+                        e.printStackTrace()
+                    }
+                }
+                "Plant Shop" -> {
+                    Toast.makeText(requireContext(), "Plant Shop", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+
+        return binding.root
     }
+
+
+    private fun setUpRecyclerView() {
+        adapter = DiscoverPlantsAdapter(getListOfDiscoveries())
+        binding.rvDiscovery.adapter = adapter
+        binding.rvDiscovery.layoutManager = LinearLayoutManager(activity)
+    }
+
+    private fun getListOfDiscoveries() : MutableList<DiscoveryItem>{
+        listOfDiscovery = mutableListOf(
+            DiscoveryItem(
+                context?.getMyDrawable(R.drawable.plant),
+                "Plant Articles",
+                "Search for articles about plants"
+            ),
+            DiscoveryItem(
+                context?.getMyDrawable(R.drawable.plant),
+                "Plant Identification",
+                "identify plant with google Lens"
+            ),
+            DiscoveryItem(
+                context?.getMyDrawable(R.drawable.plant),
+                "Plant Shop",
+                "Find nearby plant shop"
+            )
+
+        )
+
+        return listOfDiscovery
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+}
+
+// extension function to get the drawable id.
+
+fun Context.getMyDrawable(id : Int) : Drawable?{
+
+    return  ContextCompat.getDrawable(this, id)
 }

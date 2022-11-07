@@ -42,7 +42,7 @@ class PlantFragment : Fragment() {
 
         _binding = FragmentPlantBinding.inflate(inflater,container,false)
 
-        adapter = PlantAdapter()
+//        adapter = PlantAdapter()
 
         recyclerView = binding.rvPlants
 

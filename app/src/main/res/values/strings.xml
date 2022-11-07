@@ -35,8 +35,13 @@
     <string name="watering_reminder">Watering Reminder</string>
     <string name="outdoor_reminder">Outdoor Reminder</string>
 
+
+
+
     <!-- drop down watering schedule -->
     <string name="daily">Daily</string>
     <string name="weekly">Weekly</string>
     <string name="monthly">Monthly</string>
+
+
 </resources>
